@@ -19,4 +19,7 @@ export class ProductService {
     return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_ALL_CATEGORY)
   }
 
+  register(obj: any) {
+    return this.http.post(Constant.API_END_POINT + Constant.METHODS.REGISTER_CUSTOMER, obj)
+  }
 }

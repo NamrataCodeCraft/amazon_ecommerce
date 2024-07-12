@@ -163,11 +163,13 @@
 
                                 <form action="#" class="signin-form">
                                     <div class="form-group mt-3">
-                                        <input type="text" class="form-control" required>
+                                        <input type="text" [(ngModel)]="loginObj.UserName" class="form-control"
+                                            required>
                                         <label class="form-control-placeholder" for="username">Username</label>
                                     </div>
                                     <div class="form-group mt-4">
-                                        <input id="password-field" type="password" class="form-control" required>
+                                        <input id="password-field" type="password" [(ngModel)]="loginObj.UserPassword"
+                                            class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
                                         <span toggle="#password-field"
                                             class="fa fa-fw fa-eye field-icon toggle-password"></span>
@@ -213,27 +215,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 my-2">
-                            <input type="text" class="form-control">
-                            <label for="">Full Name</label>
+                            <input type="text" [(ngModel)]="registerObj.Name" class="form-control">
+                            <label for="">Set Userame</label>
                         </div>
                         <div class="col-12 my-2">
-                            <input type="text" class="form-control">
-                            <label for="">Set Username</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="password" class="form-control">
+                            <input type="password" [(ngModel)]="registerObj.Password" class="form-control">
                             <label for="">Set Password</label>
                         </div>
                         <div class="col-12 my-2">
-                            <input type="email" class="form-control">
-                            <label for="">E-mail Id</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="date" class="form-control">
-                            <label for="">DOB</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="number" class="form-control">
+                            <input type="number" [(ngModel)]="registerObj.MobileNo" class="form-control">
                             <label for="">Conatct Number</label>
                         </div>
                         <div class="col-12 my-2">
@@ -250,7 +240,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Register</button>
+                <button type="button" class="btn btn-primary" (click)="onRegister()">Register</button>
             </div>
         </div>
     </div>
