@@ -15,8 +15,13 @@ export class ProductsComponent implements OnInit {
   productsArray: any[] = []
   categories: any[] = []
   selectedCategory: number = 0
+  loggedObj: any = {}
   constructor(private productSrv: ProductService) {
-
+    const localData = localStorage.getItem("amazon_user")
+    if (localData != null) {
+      const parseObj = JSON.parse(localData)
+      this.loggedObj = parseObj
+    }
   }
   ngOnInit(): void {
     this.loadProducts()
@@ -39,9 +44,23 @@ export class ProductsComponent implements OnInit {
   loadCategory() {
     this.productSrv.getAllCategory().subscribe((res: any) => {
       this.categories = res.data.slice(0, 7)
-
-
-
+    })
+  }
+  addtocart(productId: number) {
+    const obj: any = {
+      "CartId": 0,
+      "CustId": this.loggedObj.custId,
+      "ProductId": productId,
+      "Quantity": 0,
+      "AddedDate": new Date()
+    }
+    this.productSrv.addtocart(obj).subscribe((res: any) => {
+      if (res.result) {
+        alert('Product Added to Cart')
+        this.productSrv.cartUpdated.next(true)
+      } else {
+        alert(res.message)
+      }
     })
   }
 

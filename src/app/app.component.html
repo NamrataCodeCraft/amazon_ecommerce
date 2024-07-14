@@ -19,14 +19,14 @@
                             id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             home
                         </a>
-                        <ul class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                        <!-- <ul class="dropdown-menu  " aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item " href="#">Fashion 1</a></li>
                             <li><a class="dropdown-item" href="#">Fashion 2</a></li>
                             <li><a class="dropdown-item" href="#">furniture 1</a></li>
                             <li><a class="dropdown-item" href="#">furniture 2</a></li>
                             <li><a class="dropdown-item" href="#">Electronics 1</a></li>
                             <li><a class="dropdown-item" href="#">Electronics 1</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1"
@@ -36,13 +36,9 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">About Us</a></li>
                             <li><a class="dropdown-item" href="#">Cotact Us</a></li>
-
                             <li><a class="dropdown-item" href="#">Terms and Conditions</a></li>
                         </ul>
                     </li>
-
-
-
                     <li class="nav-item">
                         <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Contact us</a>
                     </li>
@@ -52,62 +48,56 @@
                     </li>
                     <!-- cart -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-cart-shopping fs-5 me-1" style="color: #202122;"></i>
-                        </a>
+                        <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1"
+                        href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cart
+                    </a>
                         <ul class="dropdown-menu menuOnLeft   rounded-0 mt-2" aria-labelledby="navbarDropdown3">
-                            <li class="p-2">
-                                <div class="d-flex w-100 border-bottom justify-content-evenly">
-                                    <div>
-                                        <img style="height: 70px !important;width: 100px !important;"
-                                            class="img-fluid     p-2" src="product_img/cartImg1.jfif" alt="">
+                            <ng-container *ngIf="cartItems.length !=0">
+                                <li class="p-2" *ngFor="let item of cartItems">
+                                    <div class="d-flex w-100 border-bottom justify-content-evenly">
+                                        <div>
+                                            <img style="height: 80px !important;" class="img-fluid     p-2"
+                                                [src]="item.productImageUrl" alt="">
+                                        </div>
+                                        <div style="">
+                                            <a href="#" class="text-decoration-none text-black fw-semibold">
+                                                <p class="m-0 p-0">{{item.productShortName}}</p>
+                                            </a>
+                                            <p>1 X <i class="fa-solid fa-xmark" style="color: #0d0d0d;"></i>
+                                                $ {{item.productPrice}}</p>
+                                        </div>
+                                        
+                                        <button type="button" class="btn fs-5 closeBtn"
+                                            (click)="removeItem(item.cartId)">X
+                                            <i class="fa-solid fa-xmark"></i></button>
                                     </div>
 
+                                </li>
 
-                                    <div style="">
-                                        <a href="#" class="text-decoration-none text-black fw-semibold">
-                                            <p class="m-0 p-0">Varibale Product 001</p>
-                                        </a>
-                                        <p>1 <i class="fa-solid fa-xmark" style="color: #0d0d0d;"></i> $ 78.00</p>
+                                <li class="p-2" >
+                                    <div class=" w-100 ">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>SubTotal :</h6>
+                                            <h6> $ {{total}}.00</h6>
+                                        </div>
+                                        <div class="d-flex justify-content-evenly mt-2">
+                                            <button class="btn btn-dark rounded-0 px-3"> View Cart</button>
+                                            <a routerLink="/checkout"> <button
+                                                    class="btn btn-danger rounded-0 px-3">Checkout</button></a>
+                                        </div>
+
                                     </div>
-                                    <button type="button" class="btn fs-5 closeBtn"><i
-                                            class="fa-solid fa-xmark"></i></button>
-                                </div>
+                                </li>
+                            </ng-container>
 
-                            </li>
-                            <li class="p-2">
-                                <div class="d-flex w-100 border-bottom justify-content-evenly">
-
-                                    <img style="height: 70px !important;width: 100px !important;" class="img-fluid  p-2"
-                                        src="product_img/cartImg2.jfif" alt="">
-                                    <div>
-                                        <a href="#" class="text-decoration-none text-black fw-semibold">
-                                            <p class="m-0 p-0">Ornare consequat</p>
-                                        </a>
-                                        <p>1 <i class="fa-solid fa-xmark" style="color: #0d0d0d;"></i> $ 81.00</p>
+                            <ng-container *ngIf="cartItems.length == 0">
+                                <li class="p-2">
+                                    <div class=" w-100  text-center">
+                                        <h6>Cart is Empty</h6>
                                     </div>
-
-                                    <button type="button" class="btn fs-5 closeBtn"><i
-                                            class="fa-solid fa-xmark"></i></button>
-
-                                </div>
-                            </li>
-                            <li class="p-2">
-                                <div class=" w-100 ">
-                                    <div class="d-flex justify-content-between">
-                                        <h6>SubTotal :</h6>
-                                        <h6>$159.00</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-evenly mt-2">
-                                        <button class="btn btn-dark rounded-0 px-3"> View Cart</button>
-                                        <a href="checkout.html"> <button
-                                                class="btn btn-danger rounded-0 px-3">Checkout</button></a>
-                                    </div>
-
-                                </div>
-                            </li>
-
+                                </li>
+                            </ng-container>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -116,7 +106,7 @@
                             <i class="fa fa-user fs-5 me-1" style="color: #202122;"></i>
                         </a>
                         <ul class="dropdown-menu" style="left:-50px" aria-labelledby="navbarDropdown">
-                            <li>
+                            <li *ngIf="!loggedObj.custId">
                                 <div class="d-flex justify-content-evenly mt-2">
                                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                         aria-controls="offcanvasRight"> <button
@@ -126,7 +116,9 @@
                                 </div>
 
                             </li>
-
+                            <li *ngIf="loggedObj.custId">
+                                <h6 class="text-center"> {{loggedObj.name}}</h6>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -163,19 +155,19 @@
 
                                 <form action="#" class="signin-form">
                                     <div class="form-group mt-3">
-                                        <input type="text" [(ngModel)]="loginObj.UserName" class="form-control"
-                                            required>
-                                        <label class="form-control-placeholder" for="username">Username</label>
+                                        <label class="form-control-placeholder" for="username">Contact No.</label>
+                                        <input type="text" name="UserName" [(ngModel)]="loginObj.UserName"
+                                            class="form-control" required>
                                     </div>
                                     <div class="form-group mt-4">
-                                        <input id="password-field" type="password" [(ngModel)]="loginObj.UserPassword"
-                                            class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Password</label>
+                                        <input id="password-field" type="password" name="UserPassword"
+                                            [(ngModel)]="loginObj.UserPassword" class="form-control" required>
                                         <span toggle="#password-field"
                                             class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit"
+                                        <button type="button" (click)="onLogin()"
                                             class=" my-4 form-control btn btn-primary rounded submit px-3">Sign
                                             In</button>
                                     </div>
@@ -215,26 +207,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 my-2">
+                            <label for="">Set Username</label>
                             <input type="text" [(ngModel)]="registerObj.Name" class="form-control">
-                            <label for="">Set Userame</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="password" [(ngModel)]="registerObj.Password" class="form-control">
-                            <label for="">Set Password</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="number" [(ngModel)]="registerObj.MobileNo" class="form-control">
-                            <label for="">Conatct Number</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <input type="radio" name="gender" id=""><label for="">Male</label>
-                            <input type="radio" name="gender" id=""><label for="">Female</label>
-                        </div>
-                        <div class="col-12 my-2">
-                            <textarea name="" id="" class="form-control"></textarea>
-                            <label for="">Full Address</label>
-                        </div>
 
+                        </div>
+                        <div class="col-12 my-2">
+                            <label for="">Set Password</label>
+                            <input type="password" [(ngModel)]="registerObj.Password" class="form-control">
+
+                        </div>
+                        <div class="col-12 my-2">
+                            <label for="">Conatct Number</label>
+                            <input type="number" [(ngModel)]="registerObj.MobileNo" class="form-control">
+
+                        </div>
                     </div>
                 </div>
             </div>

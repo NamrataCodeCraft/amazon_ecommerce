@@ -4,7 +4,12 @@ export const Constant = {
         GET_ALL_PRODUCT: 'GetAllProducts',
         GET_ALL_CATEGORY: 'GetAllCategory',
         GET_ALL_PRODUCT_BY_CATEGORY: 'GetAllProductsByCategoryId?id=',
-        REGISTER_CUSTOMER: 'RegisterCustomer'
+        REGISTER: 'RegisterCustomer',
+        LOGIN: 'Login',
+        ADD_TO_CART: 'AddToCart',
+        GetCartProductsByCustomerId: 'GetCartProductsByCustomerId?id=',
+        DeleteProductFromCartById: 'DeleteProductFromCartById?id=',
+        PlaceOrder: 'PlaceOrder'
     }
 }
 
