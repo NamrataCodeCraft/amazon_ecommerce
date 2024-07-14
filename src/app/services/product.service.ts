@@ -38,4 +38,7 @@ export class ProductService {
   PlaceOrder(obj: any) {
     return this.http.post(Constant.API_END_POINT + Constant.METHODS.PlaceOrder, obj)
   }
+  getProductDetail(id: number) {
+    return this.http.get(Constant.API_END_POINT + Constant.METHODS.GetProductById + id)
+  }
 }

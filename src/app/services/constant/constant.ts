@@ -1,5 +1,5 @@
 export const Constant = {
-    API_END_POINT: 'https://freeapi.miniprojectideas.com/api/amazon/',
+    API_END_POINT: '/api/amazon/',
     METHODS: {
         GET_ALL_PRODUCT: 'GetAllProducts',
         GET_ALL_CATEGORY: 'GetAllCategory',
@@ -9,7 +9,8 @@ export const Constant = {
         ADD_TO_CART: 'AddToCart',
         GetCartProductsByCustomerId: 'GetCartProductsByCustomerId?id=',
         DeleteProductFromCartById: 'DeleteProductFromCartById?id=',
-        PlaceOrder: 'PlaceOrder'
+        PlaceOrder: 'PlaceOrder',
+        GetProductById: "GetProductById?id="
     }
 }
 
