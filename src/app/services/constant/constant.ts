@@ -1,5 +1,5 @@
 export const Constant = {
-    API_END_POINT: '/api/amazon/',
+    API_END_POINT: 'https://freeapi.miniprojectideas.com/api/amazon/',
     METHODS: {
         GET_ALL_PRODUCT: 'GetAllProducts',
         GET_ALL_CATEGORY: 'GetAllCategory',
