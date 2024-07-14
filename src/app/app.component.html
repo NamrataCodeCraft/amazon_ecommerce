@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light nav-yellow  border-bottom border-top p-0">
         <div class="container">
             <a class="navbar-brand fs-4 fw-bold " href="#"><i class="fa fa-cart-shopping fs-4"
-                    style="color: #f54242;"></i><span class="textBlur">bigBasket</span></a>
+                    style="color: #f54242;"></i><span class="textBlur">BigShop</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -15,20 +15,19 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0  text-center ">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-semibold text-uppercase  me-1 text-danger" href="#"
+                        <a class="nav-link dropdown-toggle fw-semibold text-uppercase  me-1 text-black" href="#"
                             id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            home
+                            Category
                         </a>
-                        <!-- <ul class="dropdown-menu  " aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item " href="#">Fashion 1</a></li>
-                            <li><a class="dropdown-item" href="#">Fashion 2</a></li>
-                            <li><a class="dropdown-item" href="#">furniture 1</a></li>
-                            <li><a class="dropdown-item" href="#">furniture 2</a></li>
-                            <li><a class="dropdown-item" href="#">Electronics 1</a></li>
-                            <li><a class="dropdown-item" href="#">Electronics 1</a></li>
-                        </ul> -->
+                        <ul class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                            <li *ngFor="let category of categories"
+                                (click)="getAllProductByCategory(category.categoryId)"><a class="dropdown-item "
+                                    href="#">{{category.categoryName}}</a></li>
+
+                        </ul>
                     </li>
-                    <li class="nav-item dropdown">
+
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1"
                             href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             pages
@@ -38,20 +37,20 @@
                             <li><a class="dropdown-item" href="#">Cotact Us</a></li>
                             <li><a class="dropdown-item" href="#">Terms and Conditions</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Contact us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass fs-5"
                                 style="color: #0c0d0d;"></i></a>
-                    </li>
+                    </li> -->
                     <!-- cart -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1"
-                        href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Cart
-                    </a>
+                        <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-danger  me-1"
+                            href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cart
+                        </a>
                         <ul class="dropdown-menu menuOnLeft   rounded-0 mt-2" aria-labelledby="navbarDropdown3">
                             <ng-container *ngIf="cartItems.length !=0">
                                 <li class="p-2" *ngFor="let item of cartItems">
@@ -67,15 +66,15 @@
                                             <p>1 X <i class="fa-solid fa-xmark" style="color: #0d0d0d;"></i>
                                                 $ {{item.productPrice}}</p>
                                         </div>
-                                        
+
                                         <button type="button" class="btn fs-5 closeBtn"
-                                            (click)="removeItem(item.cartId)">X
+                                            (click)="removeItem(item.cartId)"> <Strong>x</Strong>
                                             <i class="fa-solid fa-xmark"></i></button>
                                     </div>
 
                                 </li>
 
-                                <li class="p-2" >
+                                <li class="p-2">
                                     <div class=" w-100 ">
                                         <div class="d-flex justify-content-between">
                                             <h6>SubTotal :</h6>
@@ -100,7 +99,14 @@
                             </ng-container>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li *ngIf="loggedObj.custId">
+                        <a class="nav-link  fw-semibold text-uppercase  me-1 text-black" role="button"
+                            aria-expanded="false">
+                            {{loggedObj.name}}
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown" *ngIf="!loggedObj.custId">
                         <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1"
                             href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user fs-5 me-1" style="color: #202122;"></i>
@@ -116,11 +122,13 @@
                                 </div>
 
                             </li>
-                            <li *ngIf="loggedObj.custId">
+                            <!-- <li *ngIf="loggedObj.custId">
                                 <h6 class="text-center"> {{loggedObj.name}}</h6>
-                            </li>
+                            </li> -->
                         </ul>
+
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#"> </a>
                     </li>

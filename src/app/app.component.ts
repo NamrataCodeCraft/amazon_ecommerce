@@ -26,7 +26,10 @@ export class AppComponent implements OnInit {
   }
   loggedObj: any = {}
   cartItems: any[] = []
+  productsArray: any[] = []
   categories: any[] = []
+  selectedCategory: number = 0
+
   total: number = 0
   constructor(private productSrv: ProductService) {
     const localData = localStorage.getItem("amazon_user")
@@ -54,6 +57,13 @@ export class AppComponent implements OnInit {
   }
   calculateSum(): void {
     this.total = this.cartItems.reduce((acc, value) => acc + value, 0);
+  }
+  getAllProductByCategory(categoryId: number) {
+    this.selectedCategory = categoryId
+    this.productSrv.getAllProductsByCategory(categoryId).subscribe((res: any) => {
+      this.productsArray = res.data
+
+    })
   }
   onRegister() {
     this.productSrv.register(this.registerObj).subscribe((res: any) => {
