@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
   }
   loadCategory() {
     this.productSrv.getAllCategory().subscribe((res: any) => {
-      this.categories = res.data.slice(0, 7)
+      this.categories = res.data.slice(0, 6)
     })
   }
   addtocart(productId: number) {

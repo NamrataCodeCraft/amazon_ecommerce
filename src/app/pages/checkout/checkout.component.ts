@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   standalone: true,
@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
     "DeliveryLandMark": ""
   }
   total: number = 0
-  constructor(private productSrv: ProductService) {
+  constructor(private productSrv: ProductService, private router: Router) {
     const localData = localStorage.getItem("amazon_user")
     if (localData != null) {
       const parseObj = JSON.parse(localData)
@@ -56,6 +56,7 @@ export class CheckoutComponent implements OnInit {
       if (res.result) {
         this.productSrv.cartUpdated.next(true)
         alert("Order has been successfully placed")
+        this.router.navigate(['/thankyou']);
       } else {
         alert(res.message)
       }
