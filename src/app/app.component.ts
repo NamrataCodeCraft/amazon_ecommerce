@@ -46,17 +46,12 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadCategory()
-    this.calculateSum();
-    // this.getAllProductByCategory(1)
   }
   getCartData(id: number) {
     this.productSrv.getAddtoCartDataByCust(id).subscribe((res: any) => {
       this.cartItems = res.data
       this.total = this.cartItems.reduce((acc, item) => acc + item.productPrice, 0);
     })
-  }
-  calculateSum(): void {
-    this.total = this.cartItems.reduce((acc, value) => acc + value, 0);
   }
   getAllProductByCategory(categoryId: number) {
     this.selectedCategory = categoryId

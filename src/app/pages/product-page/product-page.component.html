@@ -12,7 +12,13 @@
                     <span class="badge rounded-pill bg-success">qty 1</span>
                     <p>$ {{productObj.productPrice}} </p>
                     <p class="card-text"><small class="text-muted">deliveryTimeSpan : {{productObj.deliveryTimeSpan}}</small></p>
+                        <p class="text-end pb-0 mb-0"><button 
+                            (click)="addtocart(productObj.productId)"
+                                class="btn  text-end btn-sm btn-success p-2"><i
+                                    class="fa-solid fa-cart-plus fs-5" style="color: #0c0d0d;"></i>
+                                Add To Cart</button></p>
                 </div>
+           
             </div>
         </div>
     </div>
